@@ -21,15 +21,6 @@ CREATE TABLE IF NOT EXISTS users (
 );
 """
 
-CREATE_GROUPS_TABLE = """
-CREATE TABLE IF NOT EXISTS groups (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  description TEXT,
-  members_count INTEGER
-);
-"""
-
 CREATE_FRIENDS_TABLE = """
 CREATE TABLE IF NOT EXISTS friends (
   user_id INTEGER,
@@ -37,13 +28,7 @@ CREATE TABLE IF NOT EXISTS friends (
 );
 """
 
-CREATE_USER_GROUOS_TABLE = """
-CREATE TABLE IF NOT EXISTS user_groups (
-  user_id INTEGER,
-  group_id INTEGER
-);
-"""
-tables = [CREATE_USERS_TABLE, CREATE_GROUPS_TABLE, CREATE_FRIENDS_TABLE, CREATE_USER_GROUOS_TABLE]
+tables = [CREATE_USERS_TABLE, CREATE_FRIENDS_TABLE]
 
 class SQLiteDriver:
     def __init__(self, path):
@@ -68,6 +53,6 @@ class SQLiteDriver:
         try:
             cursor.execute(query)
             self.connection.commit()
-            print("Query executed successfully")
+            #print("Query executed successfully")
         except Error as e:
             print(f"The error '{e}' occurred while processing quary: {query}")
